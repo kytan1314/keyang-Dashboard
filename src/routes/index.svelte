@@ -1,5 +1,37 @@
 <script>
     import supabase from "$lib/db";
+    function addTimeSlot(day){
+if (day==="Monday"){
+  timetable.Monday = [
+    ...timetable.Monday,
+    { name: "??", period: 1, style: "" }
+  ];
+}
+  else if (day==="Tuesday"){
+  timetable.Tuesday = [
+    ...timetable.Tuesday,
+    { name: "??", period: 1, style: "" }
+  ];
+  }
+  else if (day==="Wednesday"){
+  timetable.Wednesday = [
+    ...timetable.Wednesday,
+    { name: "??", period: 1, style: "" }
+  ];
+  }
+  else if (day==="Thursday"){
+  timetable.Thursday = [
+    ...timetable.Thursday,
+    { name: "??", period: 1, style: "" }
+  ];
+  }
+  else if (day==="Friday"){
+  timetable.Friday = [
+    ...timetable.Friday,
+    { name: "??", period: 1, style: "" }
+  ];
+}
+    }
     let timetable = {
         Monday: [
           {
@@ -176,7 +208,7 @@
 <div class="container mt-5">
     <h1>My Dashboard</h1>
         <caption>School Timetable</caption>
-<table class="table">
+<table class="table table-bordered table-striped text-center caption-top" >
     <thead>
       <tr  class="table-dark">
         <th scope="col">#</th>
@@ -198,54 +230,112 @@
         <th scope="row" class="table-dark">MON</th>
         {#each timetable.Monday as timeSlot,index}
         <td colspan={timeSlot.period} class={timeSlot.style}>
-        <button type="button" class="btn">
+        <button type="button" class="btn" data-bs-toggle="modal"
+        data-bs-target="#editTimeSlot">
             {timeSlot.name}
         </button>
         </td>
         {/each}
+        <td>
+          <button on:click={() => addTimeSlot("Monday")} class="btn">+</button>
+          </td>
       </tr>
       <tr>
         <th scope="row" class="table-dark">TUES</th>
         {#each timetable.Tuesday as timeSlot,index}
         <td colspan={timeSlot.period} class={timeSlot.style}>
-        <button type="button" class="btn">
+        <button type="button" class="btn" data-bs-toggle="modal"
+        data-bs-target="#editTimeSlot">
             {timeSlot.name}
         </button>
         </td>
         {/each}
+        <td>
+          <button on:click={() => addTimeSlot("Tuesday")} class="btn">+</button>
+          </td>
       </tr>
       <tr>
         <th scope="row" class="table-dark">WED</th>
         {#each timetable.Wednesday as timeSlot,index}
         <td colspan={timeSlot.period} class={timeSlot.style}>
-        <button type="button" class="btn">
+        <button type="button" class="btn"data-bs-toggle="modal"
+        data-bs-target="#editTimeSlot">
             {timeSlot.name}
         </button>
         </td>
         {/each}
+        <td>
+          <button on:click={() => addTimeSlot("Wednesday")} class="btn">+</button>
+          </td>
       </tr>
       <tr>
         <th scope="row" class="table-dark">THU</th>
         {#each timetable.Thursday as timeSlot,index}
         <td colspan={timeSlot.period} class={timeSlot.style}>
-        <button type="button" class="btn">
+        <button type="button" class="btn" data-bs-toggle="modal"
+        data-bs-target="#editTimeSlot">
             {timeSlot.name}
         </button>
         </td>
         {/each}
+        <td>
+          <button on:click={() => addTimeSlot("Thursday")} class="btn">+</button>
+          </td>
       </tr>
       <tr>
         <th scope="row" class="table-dark">FRI</th>
         {#each timetable.Friday as timeSlot,index}
         <td colspan={timeSlot.period} class={timeSlot.style}>
-        <button type="button" class="btn">
+        <button type="button" class="btn" data-bs-toggle="modal"
+        data-bs-target="#editTimeSlot">
             {timeSlot.name}
         </button>
         </td>
         {/each}
+        <td>
+          <button on:click={() => addTimeSlot("Friday")} class="btn">+</button>
+          </td>
       </tr>
     </tbody>
   </table>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="editTimeSlot" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Time Slot</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group mb-3">
+  <span class="input-group-text" id="basic-addon1">Name</span>
+  <input type="text" class="form-control">
+</div>
+<div class="input-group mb-3">
+  <span class="input-group-text" id="basic-addon1">Period</span>
+  <input type="number" class="form-control">
+</div>
+<div class="input-group mb-3">
+  <label class="input-group-text" for="inputGroupSelect01">Options</label>
+  <select class="form-select" id="styleSelect">
+    <option value="" selected>Default</option>
+    <option value="table-primary">Blue</option>
+    <option value="table-success">Green</option>
+    <option value="table-danger">Red</option>
+    <option value="table-warning">Yellow</option>
+    <option value="table-secondary">Grey</option>
+  </select>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">Delete</button>
+        <button type="button" class="btn btn-danger">Save changes</button>
+
+      </div>
+    </div>
+  </div>
 </div>
 <div class="text-center mt-5">
     <button class="btn btn-dark" on:click={logout}>Logout</button>
