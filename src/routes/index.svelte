@@ -1,37 +1,5 @@
 <script>
     import supabase from "$lib/db";
-    function addTimeSlot(day){
-if (day==="Monday"){
-  timetable.Monday = [
-    ...timetable.Monday,
-    { name: "??", period: 1, style: "" }
-  ];
-}
-  else if (day==="Tuesday"){
-  timetable.Tuesday = [
-    ...timetable.Tuesday,
-    { name: "??", period: 1, style: "" }
-  ];
-  }
-  else if (day==="Wednesday"){
-  timetable.Wednesday = [
-    ...timetable.Wednesday,
-    { name: "??", period: 1, style: "" }
-  ];
-  }
-  else if (day==="Thursday"){
-  timetable.Thursday = [
-    ...timetable.Thursday,
-    { name: "??", period: 1, style: "" }
-  ];
-  }
-  else if (day==="Friday"){
-  timetable.Friday = [
-    ...timetable.Friday,
-    { name: "??", period: 1, style: "" }
-  ];
-}
-    }
     let timetable = {
         Monday: [
           {
@@ -204,6 +172,57 @@ if (day==="Monday"){
           },
         ],
       };
+      
+      let curDay;
+      let curIndex;
+      let curName;
+      let curPeriod;
+      let cnurStyle;
+
+      function showCurData (day,index,name,period,style){
+        curDay = day
+        curIndex = index
+        curName = name
+        curPeriod = period
+        curStyle = style
+      }
+      function addTimeSlot(day){
+if (day==="Monday"){
+  timetable.Monday = [
+    ...timetable.Monday,
+    { name: "??", period: 1, style: "" }
+  ];
+}
+  else if (day==="Tuesday"){
+  timetable.Tuesday = [
+    ...timetable.Tuesday,
+    { name: "??", period: 1, style: "" }
+  ];
+  }
+  else if (day==="Wednesday"){
+  timetable.Wednesday = [
+    ...timetable.Wednesday,
+    { name: "??", period: 1, style: "" }
+  ];
+  }
+  else if (day==="Thursday"){
+  timetable.Thursday = [
+    ...timetable.Thursday,
+    { name: "??", period: 1, style: "" }
+  ];
+  }
+  else if (day==="Friday"){
+  timetable.Friday = [
+    ...timetable.Friday,
+    { name: "??", period: 1, style: "" }
+  ];
+}
+    }
+      async function logout() {
+		const { error } = await supabase.auth.signOut();
+
+		if (error) alert(error.message); // alert if error
+	}
 </script>
 <div class="container mt-5">
     <h1>My Dashboard</h1>
@@ -319,7 +338,7 @@ if (day==="Monday"){
 <div class="input-group mb-3">
   <label class="input-group-text" for="inputGroupSelect01">Options</label>
   <select class="form-select" id="styleSelect">
-    <option value="" selected>Default</option>
+    <option value="">Default</option>
     <option value="table-primary">Blue</option>
     <option value="table-success">Green</option>
     <option value="table-danger">Red</option>
