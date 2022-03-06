@@ -1,183 +1,190 @@
 <script>
     import supabase from "$lib/db";
+    // let timetable = {
+    //     Monday: [
+    //       {
+    //         name: "PH",
+    //         period: 1,
+    //         style: "",
+    //       },
+    //       {
+    //         name: "PM",
+    //         period: 1,
+    //         style: "",
+    //       },
+    //       {
+    //         name: "BI",
+    //         period: 2,
+    //         style: "",
+    //       },
+    //       {
+    //         name: "R",
+    //         period: 1,
+    //         style: "table-success",
+    //       },
+    //       {
+    //         name: "BM",
+    //         period: 2,
+    //         style: "",
+    //       },
+    //       {
+    //         name: "M3",
+    //         period: 2,
+    //         style: "",
+    //       },
+    //       {
+    //         name: "BC",
+    //         period: 2,
+    //         style: "",
+    //       },
+    //     ],
+    //     Tuesday: [
+    //       {
+    //         name: "PJPK",
+    //         period: 1,
+    //         style: "",
+    //       },
+    //       {
+    //         name: "M3",
+    //         period: 2,
+    //         style: "",
+    //       },
+    //       {
+    //         name: "BI",
+    //         period: 1,
+    //         style: "",
+    //       },
+    //       {
+    //         name: "E",
+    //         period: 1,
+    //         style: "table-success",
+    //       },
+    //       {
+    //         name: "BM",
+    //         period: 2,
+    //         style: "",
+    //       },
+    //       {
+    //         name: "BC",
+    //         period: 3,
+    //         style: "",
+    //       },
+    //       {
+    //         name: "PJPK",
+    //         period: 1,
+    //         style: "",
+    //       },
+    //     ],
+    //     Wednesday: [
+    //       {
+    //         name: "BC",
+    //         period: 3,
+    //         style: "",
+    //       },
+    //       {
+    //         name: "PM",
+    //         period: 1,
+    //         style: "",
+    //       },
+    //       {
+    //         name: "H",
+    //         period: 1,
+    //         style: "table-success",
+    //       },
+    //       {
+    //         name: "PKS",
+    //         period: 3,
+    //         style: "",
+    //       },
+    //       {
+    //         name: "BM",
+    //         period: 2,
+    //         style: "",
+    //       },
+    //     ],
+    //     Thursday: [
+    //       {
+    //         name: "SA",
+    //         period: 1,
+    //         style: "",
+    //       },
+    //       {
+    //         name: "PJPK",
+    //         period: 1,
+    //         style: "",
+    //       },
+    //       {
+    //         name: "BM",
+    //         period: 2,
+    //         style: "",
+    //       },
+    //       {
+    //         name: "A",
+    //         period: 1,
+    //         style: "table-success",
+    //       },
+    //       {
+    //         name: "PM",
+    //         period: 1,
+    //         style: "",
+    //       },
+    //       {
+    //         name: "BC",
+    //         period: 2,
+    //         style: "",
+    //       },
+    //       {
+    //         name: "M3",
+    //         period: 2,
+    //         style: "",
+    //       },
+    //     ],
+    //     Friday: [
+    //       {
+    //         name: "BI",
+    //         period: 2,
+    //         style: "",
+    //       },
+    //       {
+    //         name: "BM",
+    //         period: 2,
+    //         style: "",
+    //       },
+    //       {
+    //         name: "T",
+    //         period: 1,
+    //         style: "table-success",
+    //       },
+    //       {
+    //         name: "BC",
+    //         period: 2,
+    //         style: "",
+    //       },
+    //       {
+    //         name: "PM",
+    //         period: 1,
+    //         style: "",
+    //       },
+    //       {
+    //         name: "SA",
+    //         period: 2,
+    //         style: "",
+    //       },
+    //     ],
+    //   };
     let timetable = {
-        Monday: [
-          {
-            name: "PH",
-            period: 1,
-            style: "",
-          },
-          {
-            name: "PM",
-            period: 1,
-            style: "",
-          },
-          {
-            name: "BI",
-            period: 2,
-            style: "",
-          },
-          {
-            name: "R",
-            period: 1,
-            style: "table-success",
-          },
-          {
-            name: "BM",
-            period: 2,
-            style: "",
-          },
-          {
-            name: "M3",
-            period: 2,
-            style: "",
-          },
-          {
-            name: "BC",
-            period: 2,
-            style: "",
-          },
-        ],
-        Tuesday: [
-          {
-            name: "PJPK",
-            period: 1,
-            style: "",
-          },
-          {
-            name: "M3",
-            period: 2,
-            style: "",
-          },
-          {
-            name: "BI",
-            period: 1,
-            style: "",
-          },
-          {
-            name: "E",
-            period: 1,
-            style: "table-success",
-          },
-          {
-            name: "BM",
-            period: 2,
-            style: "",
-          },
-          {
-            name: "BC",
-            period: 3,
-            style: "",
-          },
-          {
-            name: "PJPK",
-            period: 1,
-            style: "",
-          },
-        ],
-        Wednesday: [
-          {
-            name: "BC",
-            period: 3,
-            style: "",
-          },
-          {
-            name: "PM",
-            period: 1,
-            style: "",
-          },
-          {
-            name: "H",
-            period: 1,
-            style: "table-success",
-          },
-          {
-            name: "PKS",
-            period: 3,
-            style: "",
-          },
-          {
-            name: "BM",
-            period: 2,
-            style: "",
-          },
-        ],
-        Thursday: [
-          {
-            name: "SA",
-            period: 1,
-            style: "",
-          },
-          {
-            name: "PJPK",
-            period: 1,
-            style: "",
-          },
-          {
-            name: "BM",
-            period: 2,
-            style: "",
-          },
-          {
-            name: "A",
-            period: 1,
-            style: "table-success",
-          },
-          {
-            name: "PM",
-            period: 1,
-            style: "",
-          },
-          {
-            name: "BC",
-            period: 2,
-            style: "",
-          },
-          {
-            name: "M3",
-            period: 2,
-            style: "",
-          },
-        ],
-        Friday: [
-          {
-            name: "BI",
-            period: 2,
-            style: "",
-          },
-          {
-            name: "BM",
-            period: 2,
-            style: "",
-          },
-          {
-            name: "T",
-            period: 1,
-            style: "table-success",
-          },
-          {
-            name: "BC",
-            period: 2,
-            style: "",
-          },
-          {
-            name: "PM",
-            period: 1,
-            style: "",
-          },
-          {
-            name: "SA",
-            period: 2,
-            style: "",
-          },
-        ],
-      };
+	Monday: [],
+	Tuesday: [],
+	Wednesday: [],
+	Thursday: [],
+	Friday: [],
+  };
       
       let curDay;
       let curIndex;
       let curName;
       let curPeriod;
-      let cnurStyle;
+      let curStyle;
 
       function showCurData (day,index,name,period,style){
         curDay = day
@@ -223,6 +230,40 @@ if (day==="Monday"){
 
 		if (error) alert(error.message); // alert if error
 	}
+  function deleteTimeSlot(day,index){
+	 timetable[day].splice(index,1);
+	 timetable=timetable;
+	 saveEntry();
+  }
+
+  function setTimeSlot(day,index,newName,newPeriod,newStyle){
+	  timetable [day] [index] . name = newName ;
+	  timetable [day] [index] . period = newPeriod ;
+	  timetable [day] [index] . style = newStyle ;
+	  saveEntry();
+  }
+
+  async function saveEntry() {
+  const { error } = await supabase.from("studentEntries").upsert(
+    {
+      user_id: supabase.auth.user().id,
+      timetable: timetable,
+    },
+    { onConflict: "user_id" }
+  );
+  if (error) alert(error.message);
+}
+
+async function getEntries() {
+  const { data, error } = await supabase.from("studentEntries").select();
+  if (error) alert(error.message);
+
+  if (data != "") {
+    timetable = data[0].timetable;
+  }
+}
+
+getEntries();
 </script>
 <div class="container mt-5">
     <h1>My Dashboard</h1>
@@ -329,15 +370,15 @@ if (day==="Monday"){
       <div class="modal-body">
         <div class="input-group mb-3">
   <span class="input-group-text" id="basic-addon1">Name</span>
-  <input type="text" class="form-control">
+  <input type="text" class="form-control" bind:value={curName}>
 </div>
 <div class="input-group mb-3">
   <span class="input-group-text" id="basic-addon1">Period</span>
-  <input type="number" class="form-control">
+  <input type="number" class="form-control" bind:value={curPeriod}>
 </div>
 <div class="input-group mb-3">
   <label class="input-group-text" for="inputGroupSelect01">Options</label>
-  <select class="form-select" id="styleSelect">
+  <select class="form-select" id="styleSelect" bind:value={curStyle}>
     <option value="">Default</option>
     <option value="table-primary">Blue</option>
     <option value="table-success">Green</option>
@@ -349,8 +390,8 @@ if (day==="Monday"){
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Delete</button>
-        <button type="button" class="btn btn-danger">Save changes</button>
+        <button type="button" class="btn btn-primary"on:click={() => deleteTimeSlot(curDay,curIndex)}>Delete</button>
+        <button type="button" class="btn btn-danger"on:click={() => setTimeSlot(curDay, curIndex, curName, curPeriod, curStyle)}>Save changes</button>
 
       </div>
     </div>
